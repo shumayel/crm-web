@@ -21,3 +21,8 @@ get '/contacts' do
 @new_contact = "Add a New Contact"
     erb :contacts
 end
+
+get "/contacts/new" do
+
+erb :new_contacts
+end
