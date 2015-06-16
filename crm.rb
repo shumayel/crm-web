@@ -1,5 +1,6 @@
-require 'sinatra'
+require_relative 'rolodex.rb'
 require_relative 'contact.rb'
+require 'sinatra'
 
 get '/' do
 @crm_app_name = "My CRM"
