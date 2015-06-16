@@ -4,8 +4,8 @@ class Contact
 
   def initialize(first_name, last_name, email, notes)
     # @id = id
-    @first_name = first_name.capitalize
-    @last_name = last_name.capitalize
+    @first_name = first_name
+    @last_name = last_name
     @email = email
     @notes = notes
   end
