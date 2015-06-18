@@ -4,10 +4,6 @@ require 'sinatra'
 
 $rolodex = Rolodex.new
 $rolodex = Rolodex.new
-$rolodex.add_contact(Contact.new(1, "Johnny", "Bravo", "johnny@bitmakerlabs.com", "Rockstar Programmer"))
-$rolodex.add_contact(Contact.new(2, "Powerpuff", "Girl", "powerpuff@bitmakerlabs.com", "Powerpuff Girls"))
-$rolodex.add_contact(Contact.new(3, "Dexters", "Lab", "dexter@bitmakerlabs.com", "Dexter Labs"))
-$rolodex.add_contact(Contact.new(4, "Meemee", "Dexter", "meemee@bitmakerlabs.com", "Dexters Sister"))
 
 get '/' do
 @crm_app_name = "The Boutique Rolodex."
@@ -42,6 +38,11 @@ end
 get "/contacts/:id" do
     @contact = $rolodex.find_contact(params[:id].to_i)
     if @contact
+        @contact.first_name = params[:first_name]
+    @contact.last_name = params[:last_name]
+    @contact.email = params[:email]
+    @contact.notes = params[:note]
+    redirect to("/contacts")
         erb :show_contact
 else
     raise Sinatra::NotFound
@@ -56,3 +57,13 @@ get "/contacts/:id/edit" do
     raise Sinatra::NotFound
   end
 end
+
+delete "/contacts/:id" do
+  @contact = $rolodex.find_contact(params[:id].to_i)
+  if @contact
+    $rolodex.delete_contact(@contact)
+    redirect to("/contacts")
+  else
+    raise Sinatra::NotFound
+  end
+endsdf
