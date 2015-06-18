@@ -1,0 +1,69 @@
+footer {
+    text-align: right;
+    font-style: italic;
+    position: fixed;
+    bottom: 0px;
+    float: right;
+    right: 0px;
+}
+
+h1 {
+  font: Verdana;
+}
+
+html {
+    background-color: white;
+    color: red;
+}
+
+nav {
+    text-align: right;
+    font: Verdana;
+}
+
+header {
+  /*background: no-repeat center/80% url('logo.jpg');*/
+  width: 100%;
+  background-color: rgb(182, 33, 35);
+  height: 20px;
+  display: table;
+}
+
+header img {
+  /*right: 0px;*/
+  float: right;
+  /*display: inline-block;*/
+}
+
+section {
+  text-align: center;
+}
+
+title {
+  text-align: center;
+}
+
+a {
+  text-decoration: underline;
+  color: white;
+}
+
+li {
+    list-style: none;
+    text-align: center;
+    font-size: 50px;
+    font: Verdana;
+}
+
+.button {
+  padding:5px;
+  background-color: #dcdcdc;
+  border: 5px solid #666;
+  color:#000;
+  text-decoration:none;
+}
+
+/*
+body {
+
+}*/
