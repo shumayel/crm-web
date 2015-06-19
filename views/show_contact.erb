@@ -3,6 +3,8 @@
 <p><strong>Note:</strong></p>
 <p><%= @contact.notes %></p>
 
+<p><a href="http://localhost:4567/edit_contact">Click here to Edit a contact</a></p>
+
 <form action="/contacts/<%= @contact.id %>" method="post">
   <input type="hidden" name="_method" value="delete">
   <input type="submit" name="Delete Contact">
