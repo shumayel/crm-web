@@ -30,8 +30,7 @@ end
 
 
 get '/contacts' do
-
-   @contacts = []
+    @contacts = Contact.all
   # @contacts << Contact.new("Yehuda", "Katz", "yehuda@example.com", "Developer")
   # @contacts << Contact.new("Mark", "Zuckerberg", "mark@facebook.com", "CEO")
   # @contacts << Contact.new("Sergey", "Brin", "sergey@google.com", "Co-Founder")
@@ -45,20 +44,19 @@ get "/contacts/new" do
 end
 
 post '/contacts' do
-    puts params
-    new_contact = Contact.new(param [:id], params[:first_name], params[:last_name], params[:email], params[:note])
-    $rolodex.add_contact(new_contact)
-    redirect to('/contacts')
+    contact = Contact.create(
+        :id => params[:id],
+        :first_name => params[:first_name],
+        :last_name => params[:last_name],
+        :email => params[:email],
+        :notes => params[:notes]
+        )
+    redirect to ('/contacts')
 end
 
 get "/contacts/:id" do
-    @contact = $rolodex.find_contact(params[:id].to_i)
+    @contact = Contact.get(params[:id].to_i)
     if @contact
-        @contact.first_name = params[:first_name]
-        @contact.last_name = params[:last_name]
-        @contact.email = params[:email]
-        @contact.notes = params[:note]
-        redirect to("/contacts")
         erb :show_contact
     else
         raise Sinatra::NotFound
