@@ -66,19 +66,31 @@ get "/contacts/:id" do
     end
 end
 
+
+
 put "/contacts/:id/edit" do
- @contact = Contact.update(params[:id].to_i)
+ @contact = Contact.get(params[:id].to_i)
  if @contact
-    erb :edit_contact
+    @contact.update(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], notes: params[:notes])
+    redirect to ("/contacts")
 else
     raise Sinatra::NotFound
 end
 end
 
+get "/contacts/:id/edit" do
+    @contact = Contact.get(params[:id].to_i)
+    if @contact
+    erb :edit_contact
+else
+    raise Siantra::NotFound
+end
+end
+
 delete "/contacts/:id" do
-  @contact = Contact.destroy(params[:id].to_i)
+ @contact = Contact.get(params[:id].to_i)
   if @contact
-    @contact.delete_contact(@contact)
+    @contact.destroy
     redirect to("/contacts")
 else
     raise Sinatra::NotFound
